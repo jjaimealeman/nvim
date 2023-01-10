@@ -20,7 +20,9 @@ require("lazy").setup({
     lazy = true, -- every plugin is lazy-loaded by default
     version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight", "habamax" } },
+  --  install = { colorscheme = { "tokyonight", "habamax", "nightfox" } },
+  -- nightfox varients are: nightfox, dayfox, dawnfox, duskfox, nordfox, terafox, carbonfox
+  install = { colorscheme = { "nightfox" } },
   checker = { enabled = true }, -- automatically check for plugin updates
   performance = {
     rtp = {

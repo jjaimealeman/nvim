@@ -6,6 +6,8 @@ vim.keymap.set("n", "<C-x>", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left
 --
 vim.keymap.set("n", "*", "*<C-o>", { noremap = true }) -- so the cursor doesnt move on selection
 vim.keymap.set("i", "kj", "<Esc>", { noremap = true }) -- kj to escape
+vim.keymap.set("n", "<C-u>", ":UndotreeToggle<CR>", { silent = true }) -- toggle UndoTree
+vim.keymap.set("n", "<C-f>", ":Neotree toggle<CR>") -- toggle Neotree
 --
 -- SHIFT KEYS
 vim.keymap.set("n", "<S-Down>", ":m .+1<cr>") -- move line down

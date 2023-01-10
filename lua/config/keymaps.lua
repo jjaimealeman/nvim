@@ -35,7 +35,7 @@ vim.keymap.set("n", "yw", "bvey") -- select and copy this word
 --
 -- CONTROL/CTRL KEYS
 -- vim.keymap.set("n", "<C-t>", ":ToggleTerm size=40 dir=git_dir direction=float<cr>")
-vim.keymap.set("n", "<C-s>", ":ASToggle<CR>", {})
+-- vim.keymap.set("n", "<C-s>", ":ASToggle<CR>", {})
 vim.keymap.set("n", "<C-h>", "<C-w>h") -- better window navigation
 vim.keymap.set("n", "<C-j>", "<C-w>j") --
 vim.keymap.set("n", "<C-k>", "<C-w>k") --

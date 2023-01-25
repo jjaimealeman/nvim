@@ -2,6 +2,10 @@
 
 My latest config using `LazyVim/starter` 👍 
 
+![screenshot1](https://i.imgur.com/wsYmL2e.png)
+
+![screenshot2](https://i.imgur.com/bRz4bNs.png)
+
 
 # LazyVim
 

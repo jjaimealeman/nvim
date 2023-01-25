@@ -1,3 +1,8 @@
+## Wed 25 Jan 2023
+
+My latest config using `LazyVim/starter` 👍 
+
+
 # LazyVim
 
 A starter template for [LazyVim](https://github.com/LazyVim/LazyVim)

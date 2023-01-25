@@ -22,12 +22,13 @@ vim.opt.inccommand = "nosplit" -- preview incremental substitute
 vim.opt.joinspaces = false -- No double spaces with join after a dot
 vim.opt.laststatus = 0
 vim.opt.list = true -- Show some invisible characters (tabs...
+vim.opt.listchars = "tab:╶─╴,lead:·,trail:▒,eol:↲,extends:►,precedes:◄"
 vim.opt.mouse = "a" -- enable mouse mode
 vim.opt.number = true -- Print line number
 vim.opt.pumblend = 10 -- Popup blend
 vim.opt.pumheight = 10 -- Maximum number of entries in a popup
 vim.opt.relativenumber = true -- Relative line numbers
-vim.opt.scrolloff = 25 -- Lines of context
+vim.opt.scrolloff = 10 -- Lines of context
 vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
 vim.opt.shiftround = true -- Round indent
 vim.opt.shiftwidth = 2 -- Size of an indent
@@ -50,6 +51,7 @@ vim.opt.updatetime = 200 -- save swap file and trigger CursorHold
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.go.winminwidth = 5 -- minimum window width
 vim.opt.wrap = false -- Disable line wrap
+vim.opt.textwidth = 160
 
 if vim.fn.has("nvim-0.9.0") == 1 then
   vim.opt.splitkeep = "screen"

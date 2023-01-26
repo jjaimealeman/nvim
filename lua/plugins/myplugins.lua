@@ -55,4 +55,25 @@ return {
       },
     },
   },
+  -- Add typescript
+  { import = "lazyvim.plugins.extras.lang.typescript" },
+  -- add more treesitter parsers
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "bash",
+        "html",
+        "javascript",
+        "json",
+        "markdown",
+        "markdown_inline",
+        "msx",
+        "jsx",
+        "tsx",
+        "typescript",
+        "yaml",
+      },
+    },
+  },
 }

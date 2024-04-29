@@ -3,12 +3,13 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = { "nvim-lua/plenary.nvim" },
 
-opts = {
+  opts = {
     TODO = { icon = " ", color = "info" },
     HACK = { icon = " ", color = "warning" },
     FIX = { icon = " ", color = "warning", alt = { "WARNING", "XXX", "BROKE", "BROKEN" } },
     PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-    NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
+    NOTE = { icon = " ", color = "hint", alt = { "INFO", "OPTIONS" } },
+    OPTIONS = { icon = " ", color = "hint", alt = { "INFO", "OPTIONS" } },
     TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
   },
 
@@ -33,10 +34,10 @@ opts = {
   -- FIX: this code should be fixed.
   --
   -- NOTE:
-  -- 
+  -- OPTIONS:
+  --
   -- "<leader>xt"
   -- TEST:
   -- RUN WITH:
   -- "<leader>ft"
 }
-

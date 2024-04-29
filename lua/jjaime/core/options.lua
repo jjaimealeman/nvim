@@ -1,3 +1,6 @@
+vim.g.mapleader = " "
+vim.g.autoformat = true
+
 vim.cmd("let g:netrw_liststyle = 3")
 
 vim.opt.autoindent = true -- copy indent from current line

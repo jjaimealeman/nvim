@@ -4,6 +4,8 @@ return {
   dependencies = {
     "hrsh7th/cmp-buffer", -- source for text in buffer
     "hrsh7th/cmp-path", -- source for file system paths
+    "roobert/tailwindcss-colorizer-cmp.nvim",
+    config = true,
     {
       "L3MON4D3/LuaSnip",
       -- follow latest release.
@@ -27,6 +29,15 @@ return {
 
     cmp.setup({
       completion = {
+        -- https://www.lazyvim.org/extras/lang/tailwind
+        opts = function(_, opts)
+          -- original LazyVim kind icon formatter
+          local format_kinds = opts.formatting.format
+          opts.formatting.format = function(entry, item)
+            format_kinds(entry, item) -- add icons
+            return require("tailwindcss-colorizer-cmp").formatter(entry, item)
+          end
+        end,
         completeopt = "menu,menuone,preview,noselect",
       },
       snippet = { -- configure how nvim-cmp interacts with snippet engine
@@ -45,7 +56,7 @@ return {
       }),
       -- sources for autocompletion
       sources = cmp.config.sources({
-        { name = "nvim_lsp"},
+        { name = "nvim_lsp" },
         { name = "luasnip" }, -- snippets
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths

@@ -13,8 +13,8 @@ keymap.set("n", "<S-Left>", "<<") -- deindent line
 keymap.set("v", "<S-Left>", "<gv", { silent = true, noremap = true }) -- deindent block
 
 -- CONTROL/CTRL KEYS
-keymap.set("n", "<C-s>", ":w<CR>") -- SAVE WITH CTRL S
-keymap.set("i", "<C-s>", "<ESC>:w<CR>")
+keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save" }) -- SAVE WITH CTRL S
+keymap.set("i", "<C-s>", "<ESC>:w<CR>", { desc = "Save" })
 keymap.set(
   "n",
   "<C-x>",

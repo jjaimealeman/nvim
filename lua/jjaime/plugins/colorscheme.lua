@@ -2,7 +2,6 @@ return {
   "folke/tokyonight.nvim",
   priority = 1000,
   config = function()
-
     local transparent = true -- set to true if you would like to enable transparency
 
     local bg = "#011628"
@@ -16,7 +15,13 @@ return {
     local border = "#547998"
 
     require("tokyonight").setup({
+      -- OPTIONS: "night", "storm", "day", "noon"
       style = "night",
+      transparent = transparent,
+      styles = {
+        sidebars = transparent and "transparent" or "dark",
+        floats = transparent and "transparent" or "dark",
+      },
       on_colors = function(colors)
         colors.bg = bg
         colors.bg_dark = transparent and colors.none or bg_dark
@@ -37,5 +42,8 @@ return {
     })
 
     vim.cmd("colorscheme tokyonight")
-  end
+  end,
 }
+-- NOTE:
+-- https://github.com/folke/tokyonight.nvim/blob/main/extras/kitty/tokyonight_night.conf
+-- Special config for kitty terminal.

@@ -1,31 +1,31 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
-local opt = vim.opt
-
-opt.relativenumber = true
-opt.number = true
+vim.opt.relativenumber = true
+vim.opt.number = true
 
 -- tabs and navigation
-opt.tabstop = 2 -- spaces for tabs (prettier default)
-opt.shiftwidth = 2 -- spaces for indent width
-opt.expandtab = true -- expand tab to spaces
-opt.autoindent = true -- copy indent from current line
+vim.opt.tabstop = 2 -- spaces for tabs (prettier default)
+vim.opt.shiftwidth = 2 -- spaces for indent width
+vim.opt.expandtab = true -- expand tab to spaces
+vim.opt.autoindent = true -- copy indent from current line
 
-opt.wrap = false -- disable line wrapping
-opt.smartcase = true -- disable case-sensetive search
+vim.opt.wrap = false -- disable line wrapping
+vim.opt.smartcase = true -- disable case-sensetive search
 
-opt.cursorline = true
+vim.opt.cursorline = true
 
 -- turn on termguicolors for tokyonight colorscheme to work
-opt.termguicolors = true
-opt.background = "dark"
-opt.signcolumn = "yes" -- show sign column so text doesn't shift
+vim.opt.termguicolors = true
+vim.opt.background = "dark"
+vim.opt.signcolumn = "yes" -- show sign column so text doesn't shift
 
-opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line, or insert mode start position.
+vim.opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line, or insert mode start position.
 
-opt.clipboard:append("unnamedplus") -- use system clipboard as default register
+vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 
-opt.splitright = true -- split vertical window to the right
-opt.splitbelow = true -- split horizontal widow to the bottom
+vim.opt.splitright = true -- split vertical window to the right
+vim.opt.splitbelow = true -- split horizontal widow to the bottom
 
-
+vim.opt.undodir = vim.fn.expand("~/.config/Lazy-nvim/undodir")
+vim.opt.undofile = true
+vim.opt.undolevels = 10000

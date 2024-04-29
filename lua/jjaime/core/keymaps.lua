@@ -15,13 +15,8 @@ keymap.set("n", "<S-Left>", "<<", { desc = "Deindent line." }) -- deindent line
 keymap.set("v", "<S-Left>", "<gv", { desc = "Deindent block.", silent = true, noremap = true }) -- deindent block
 
 -- SEARCH & REPLACE
-keymap.set(
-  "n",
-  "<C-x>",
-  [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]],
-  { desc = "Non-interactive search/replace." }
-)
-keymap.set("n", "<C-s-x>", [[:%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>]], { desc = "Interactive search/replace." })
+keymap.set("n", "<C-x>", [[:%s/<C-r><C-w>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Replace w/o confirmation." })
+keymap.set("n", "<C-s-x>", [[:%s/<C-r><C-w>/<C-r><C-w>/gc<Left><Left><Left>]], { desc = "Replace with confirmation." })
 
 keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true }) -- https://www.lazyvim.org/configuration/general#keymaps
 keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true }) --
@@ -45,6 +40,7 @@ keymap.set("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 -- -- RANDOM KEYS
 keymap.set("n", "<C-c>", ":let @+ = expand('%:p')<CR>", { desc = "Copy path of current buffer/file to clipboard." })
+keymap.set("n", "yw", "viwy", { desc = "Yand word." })
 keymap.set("i", "kj", "<ESC>", { desc = "Exit insert mode with kj." })
 
 -- Add undo break-points

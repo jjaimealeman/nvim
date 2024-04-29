@@ -1,31 +1,55 @@
 vim.cmd("let g:netrw_liststyle = 3")
 
-vim.opt.relativenumber = true
-vim.opt.number = true
-
--- tabs and navigation
-vim.opt.tabstop = 2 -- spaces for tabs (prettier default)
-vim.opt.shiftwidth = 2 -- spaces for indent width
-vim.opt.expandtab = true -- expand tab to spaces
 vim.opt.autoindent = true -- copy indent from current line
-
-vim.opt.wrap = false -- disable line wrapping
-vim.opt.smartcase = true -- disable case-sensetive search
-
-vim.opt.cursorline = true
-
--- turn on termguicolors for tokyonight colorscheme to work
-vim.opt.termguicolors = true
+vim.opt.autowrite = true -- enable auto write
 vim.opt.background = "dark"
-vim.opt.signcolumn = "yes" -- show sign column so text doesn't shift
-
 vim.opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line, or insert mode start position.
-
-vim.opt.clipboard:append("unnamedplus") -- use system clipboard as default register
-
-vim.opt.splitright = true -- split vertical window to the right
-vim.opt.splitbelow = true -- split horizontal widow to the bottom
-
+vim.opt.clipboard = "unnamedplus" -- sync with system clipboard
+vim.opt.cmdheight = 1
+vim.opt.completeopt = "menu,menuone,noselect"
+vim.opt.conceallevel = 3 -- Hide * markup for bold and italic
+vim.opt.confirm = true -- confirm to save changes before exiting modified buffer
+vim.opt.cursorline = true
+vim.opt.expandtab = true -- expand tab to spaces
+vim.opt.formatoptions = "jcroqlnt" -- tcqj
+vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
+-- vim.opt.guifont = "Dank\\ Mono:h11"
+-- vim.opt.guifont = "DejaVu Serif:h12"
+-- vim.opt.guifont = "DejaVu\\ Sans\\ Mono:h12"
+-- vim.opt.guifont = "Operator Mono Light Italic:h12"
+-- vim.opt.guifont = "Operator Mono:h12"
+vim.opt.hidden = true -- Enable modified buffers in background
+vim.opt.ignorecase = true -- Ignore case
+vim.opt.inccommand = "nosplit" -- preview incremental substitute
+vim.opt.joinspaces = false -- No double spaces with join after a dot
+vim.opt.laststatus = 0
+vim.opt.list = true -- Show some invisible characters (tabs...
+vim.opt.listchars = "tab:╶─╴,lead:·,trail:▒,eol:↲,extends:►,precedes:◄"
+vim.opt.mouse = "a" -- enable mouse mode
+vim.opt.number = true -- Print line number
+vim.opt.pumblend = 10 -- Popup blend
+vim.opt.pumheight = 10 -- Maximum number of entries in a popup
+vim.opt.relativenumber = true -- Relative line numbers
+vim.opt.scrolloff = 10 -- Lines of context
+vim.opt.sessionoptions = { "buffers", "curdir", "tabpages", "winsize" }
+vim.opt.shiftround = true -- Round indent
+vim.opt.shiftwidth = 2 -- Size of an indent
+vim.opt.showmode = false -- dont show mode since we have a statusline
+vim.opt.sidescrolloff = 8 -- Columns of context
+vim.opt.signcolumn = "yes" -- Always show the signcolumn, otherwise it would shift the text each time
+vim.opt.smartcase = true -- Don't ignore case with capitals
+vim.opt.smartindent = true -- Insert indents automatically
+vim.opt.spelllang = { "en" }
+vim.opt.splitbelow = true -- Put new windows below current
+vim.opt.splitright = true -- Put new windows right of current
+vim.opt.swapfile = false -- creates a swapfile
+vim.opt.tabstop = 2 -- Number of spaces tabs count for
+vim.opt.termguicolors = true -- True color support
+vim.opt.timeoutlen = 300
+vim.opt.updatetime = 200 -- save swap file and trigger CursorHold
+vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
+vim.opt.wrap = false -- Disable line wrap
+vim.opt.textwidth = 160
 vim.opt.undodir = vim.fn.expand("~/.config/Lazy-nvim/undodir")
 vim.opt.undofile = true
 vim.opt.undolevels = 10000

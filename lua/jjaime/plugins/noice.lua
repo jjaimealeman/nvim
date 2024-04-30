@@ -8,7 +8,6 @@ return {
   -- -- --
   config = function()
     require("noice").setup({
-      background_colour = "#181825",
       lsp = {
         -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
         override = {

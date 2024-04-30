@@ -82,10 +82,14 @@ keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" 
 keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 keymap.set("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next Buffer" })
 keymap.set("n", "<leader>bv", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+keymap.set("n", "<leader>bx", function()
+  vim.cmd("bufdo bd!")
+end, { desc = "Close all open buffers" })
+
 --
+keymap.set("n", "<leader>td", "<cmd>tabclose<CR>", { desc = "Close current tab." })
 keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "Open new tab." })
-keymap.set("n", "<leader>to", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab." })
-keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab." })
+keymap.set("n", "<leader>tN", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab." })
 keymap.set("n", "<tab>", "<cmd>tabnext<CR>", { desc = "Go to next tab." })
 keymap.set("n", "<s-tab>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab." })
 
@@ -95,3 +99,5 @@ keymap.set("n", "<C-Y>", "<C-R>") -- redo
 -- NOTES:
 -- SUPER FIND & REPLACE by Primeagen https://youtu.be/w7i4amO_zaE?t=1724
 -- copy the buffer to the system clipboard for use elsewhere https://youtu.be/w7i4amO_zaE?t=1633
+--
+--

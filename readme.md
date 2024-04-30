@@ -11,51 +11,11 @@ Inspect Tree with tree-sitter.
 
 ---
 
-.
-├── init.lua
-├── lazy-lock.json
-├── lua
-│   └── jjaime
-│   ├── core
-│   │   ├── init.lua
-│   │   ├── keymaps.lua
-│   │   └── options.lua
-│   ├── lazy.lua
-│   └── plugins
-│   ├── alpha.lua
-│   ├── autopairs.lua
-│   ├── auto-session.lua
-│   ├── bufferline.lua
-│   ├── colorscheme.lua
-│   ├── comment.lua
-│   ├── dressing.lua
-│   ├── formatting.lua
-│   ├── gitsigns.lua
-│   ├── indent-blankline.lua
-│   ├── init.lua
-│   ├── lazygit.lua
-│   ├── linting.lua
-│   ├── lsp
-│   │   ├── lspconfig.lua
-│   │   └── mason.lua
-│   ├── lualine.lua
-│   ├── nvim-cmp.lua
-│   ├── nvim-tree.lua
-│   ├── nvim-treesitter-text-objects.lua
-│   ├── substitute.lua
-│   ├── surround.lua
-│   ├── telescope.lua
-│   ├── todo-comments.lua
-│   ├── treesitter.lua
-│   ├── trouble.lua
-│   ├── vim-maximizer.lua
-│   └── which-key.lua
-└── readme.md
-
-6 directories, 34 files
-
----
-
 ## TODO:
 
 - https://github.com/ahmedkhalf/project.nvim
+
+## REFERENCE:
+
+- https://alpha2phi.medium.com/learn-neovim-the-practical-way-8818fcf4830f
+- https://alpha2phi.medium.com/neovim-101-macros-and-registers-5e08781d9d27

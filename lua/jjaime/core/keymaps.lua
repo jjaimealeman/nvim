@@ -94,6 +94,7 @@ keymap.set("n", "<tab>", "<cmd>tabnext<CR>", { desc = "Go to next tab." })
 keymap.set("n", "<s-tab>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab." })
 
 keymap.set("n", "<C-Z>", "u") -- undo
+keymap.set("i", "<C-Z>", "<C-O>u")
 keymap.set("n", "<C-Y>", "<C-R>") -- redo
 
 -- NOTES:

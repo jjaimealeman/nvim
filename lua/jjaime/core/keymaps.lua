@@ -38,9 +38,11 @@ keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all." })
 
 keymap.set("n", "[q", vim.cmd.cprev, { desc = "Previous Quickfix" })
 keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
--- -- RANDOM KEYS
-keymap.set("n", "<C-c>", ":let @+ = expand('%:p')<CR>", { desc = "Copy path of current buffer/file to clipboard." })
-keymap.set("n", "yw", "viwy", { desc = "Yand word." })
+--
+-- THE YANKS
+keymap.set("n", "<leader>yp", ":let @+ = expand('%:p')<CR>", { desc = "Yank path." })
+keymap.set("n", "<leader>yw", "viwy", { desc = "Yank word." })
+
 keymap.set("i", "kj", "<ESC>", { desc = "Exit insert mode with kj." })
 
 -- Add undo break-points
@@ -96,7 +98,6 @@ keymap.set("n", "<s-tab>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab.
 keymap.set("n", "<C-Z>", "u") -- undo
 keymap.set("i", "<C-Z>", "<C-O>u")
 keymap.set("n", "<C-Y>", "<C-R>") -- redo
-
 -- NOTES:
 -- SUPER FIND & REPLACE by Primeagen https://youtu.be/w7i4amO_zaE?t=1724
 -- copy the buffer to the system clipboard for use elsewhere https://youtu.be/w7i4amO_zaE?t=1633

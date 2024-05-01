@@ -29,16 +29,6 @@ return {
         end,
         desc = "ToggleTerm (vertical root_dir)",
       },
-      -- {
-      --   "<leader>Tn",
-      --   "<cmd>ToggleTermSetName<cr>",
-      --   desc = "Set term name",
-      -- },
-      -- {
-      --   "<leader>Ts",
-      --   "<cmd>TermSelect<cr>",
-      --   desc = "Select term",
-      -- },
       {
         "<leader>Tt",
         function()
@@ -53,6 +43,16 @@ return {
         end,
         desc = "ToggleTerm (tab cwd_dir)",
       },
+      -- {
+      --   "<leader>Tn",
+      --   "<cmd>ToggleTermSetName<cr>",
+      --   desc = "Set term name",
+      -- },
+      -- {
+      --   "<leader>Ts",
+      --   "<cmd>TermSelect<cr>",
+      --   desc = "Select term",
+      -- },
     },
     opts = {
       -- size can be a number or function which is passed the current terminal

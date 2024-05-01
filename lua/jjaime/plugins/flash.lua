@@ -1,5 +1,6 @@
 return {
   "folke/flash.nvim",
+  -- Navigate your code with search labels, enhanced character motions and Treesitter integration
   event = "VeryLazy",
   vscode = true,
   ---@type Flash.Config

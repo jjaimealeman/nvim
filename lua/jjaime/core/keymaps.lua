@@ -1,5 +1,9 @@
 local keymap = vim.keymap
 
+-- PAGE JUMPING
+keymap.set("n", "n", "nzzzv") -- thanks ThePrimeagan https://youtu.be/w7i4amO_zaE?si=tx8WahMCShufwhEo&t=1583
+keymap.set("n", "N", "Nzzzv") -- keeps cursor in the middle after searching.
+
 -- Move Lines
 keymap.set("n", "<S-Down>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
 keymap.set("n", "<S-Up>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
@@ -42,6 +46,10 @@ keymap.set("n", "]q", vim.cmd.cnext, { desc = "Next Quickfix" })
 -- THE YANKS
 keymap.set("n", "<leader>yp", ":let @+ = expand('%:p')<CR>", { desc = "Yank path." })
 keymap.set("n", "<leader>yw", "viwy", { desc = "Yank word." })
+-- next greatest remap ever by ThePrimeagan
+keymap.set("n", "<leader>yy", '"+y')
+keymap.set("v", "<leader>yy", '"+y')
+keymap.set("n", "<leader>YY", '"+y')
 
 keymap.set("i", "kj", "<ESC>", { desc = "Exit insert mode with kj." })
 
@@ -63,23 +71,22 @@ keymap.set("n", "+", "<C-a>", { desc = "Increment number." }) -- INCREMENT NUMBE
 keymap.set("n", "-", "<C-x>", { desc = "Decrement number." }) -- DECREMENT NUMBERS
 keymap.set("n", "n", "nzzzv") -- keep highlighted search term in the center of page
 keymap.set("n", "N", "Nzzzv")
-keymap.set("n", "<S-j>", "gJ", { desc = "Merge with following line.", noremap = true })
-keymap.set("n", "dts", "a<C-R>=strftime('%a %d %b %Y @ %H:%M')<CR><ESC>", { desc = "Date & time stamp." })
-keymap.set("n", "tds", "a<C-R>=strftime('%a %d %b %Y @ %H:%M')<CR><ESC>", { desc = "Date & time stamp." })
-keymap.set("n", "ds", "a<C-R>=strftime('%a %d %b %Y')<CR><ESC>", { desc = "Date stamp (no time)." })
-keymap.set("n", "ts", "a<C-R>=strftime('%H:%M')<CR><ESC>", { desc = "Time stamp (no date)." })
+keymap.set("n", "J", "mzJ`z", { desc = "Merge with following line." }) -- thanks ThePrimeagan https://youtu.be/w7i4amO_zaE?si=u3SfsyFoiqTPSHFr&t=1554
+keymap.set("n", "<leader>zd", "a<C-R>=strftime('%a %d %b %Y')<CR><ESC>", { desc = "Date stamp." })
+keymap.set("n", "<leader>zs", "a<C-R>=strftime('%a %d %b %Y @ %H:%M')<CR><ESC>", { desc = "Date & time stamp." })
+keymap.set("n", "<leader>zt", "a<C-R>=strftime('%H:%M')<CR><ESC>", { desc = "Time stamp." })
 keymap.set("n", "y", '"+y')
 keymap.set("v", "y", '"+y')
 keymap.set("n", "y", '"+Y')
 keymap.set("n", "yw", "bvey") -- SELECT AND COPY THIS WORD
 --
--- WINDOW MANAGEMENT
+-- SPLIT WINDOW MANAGEMENT
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size." })
 keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally." })
 keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically." })
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split." })
 
--- BUFFERS AND TABS
+-- BUFFERS
 keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
 keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
 keymap.set("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next Buffer" })
@@ -88,10 +95,10 @@ keymap.set("n", "<leader>bx", function()
   vim.cmd("bufdo bd!")
 end, { desc = "Close all open buffers" })
 
---
-keymap.set("n", "<leader>td", "<cmd>tabclose<CR>", { desc = "Close current tab." })
-keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "Open new tab." })
-keymap.set("n", "<leader>tN", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab." })
+-- TABS
+keymap.set("n", "<leader>td", "<cmd>tabclose<CR>", { desc = "Delete current tab." })
+keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab." })
+keymap.set("n", "<leader>tN", "<cmd>tabnew %<CR>", { desc = "New tab (duplicate current)." })
 keymap.set("n", "<tab>", "<cmd>tabnext<CR>", { desc = "Go to next tab." })
 keymap.set("n", "<s-tab>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab." })
 

@@ -62,6 +62,7 @@ return {
         icons_enabled = true,
         component_separators = { left = "", right = "" },
         section_separators = { left = "", right = "" },
+        -- DON'T USE THESE, THEY'RE HIDEOUS!!!
         -- section_separators = { left = "", right = "" },
         -- component_separators = { left = "", right = "" },
       },
@@ -104,8 +105,8 @@ return {
             },
           },
         },
-        -- lualine_x = { "filetype" },
-        lualine_x = {},
+        -- lualine_x = {'encoding', 'fileformat', 'filetype'},
+        lualine_x = { { "searchcount", maxcount = 999, timeout = 500 }, "selectioncount" },
         lualine_y = { "progress" },
         lualine_z = { "location" },
       },

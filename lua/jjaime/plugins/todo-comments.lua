@@ -37,7 +37,4 @@ return {
   -- OPTIONS:
   --
   -- "<leader>xt"
-  -- TEST:
-  -- RUN WITH:
-  -- "<leader>ft"
 }

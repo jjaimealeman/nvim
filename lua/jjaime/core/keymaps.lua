@@ -27,10 +27,10 @@ keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true }
 keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true }) --
 keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true }) --
 
-keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
-keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
-keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
-keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+keymap.set("n", "<C-Up>", "<cmd>resize +10<cr>", { desc = "Increase Window Height" })
+keymap.set("n", "<C-Down>", "<cmd>resize -10<cr>", { desc = "Decrease Window Height" })
+keymap.set("n", "<C-Right>", "<cmd>vertical resize +10<cr>", { desc = "Increase Window Width" })
+keymap.set("n", "<C-Left>", "<cmd>vertical resize -10<cr>", { desc = "Decrease Window Width" })
 
 -- keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save" }) -- SAVE WITH CTRL S
 -- keymap.set("i", "<C-s>", "<ESC>:w<CR>", { desc = "Save" })

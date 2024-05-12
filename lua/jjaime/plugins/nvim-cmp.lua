@@ -60,13 +60,16 @@ return {
         { name = "luasnip" }, -- snippets
         { name = "buffer" }, -- text within current buffer
         { name = "path" }, -- file system paths
+        { name = "codeium" },
       }),
 
       -- configure lspkind for vs-code like pictograms in completion menu
       formatting = {
         format = lspkind.cmp_format({
+          mode = "symbol",
           maxwidth = 50,
           ellipsis_char = "...",
+          symbol_map = { Codeium = "" },
         }),
       },
     })

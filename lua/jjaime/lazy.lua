@@ -13,12 +13,17 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ { import = "jjaime.plugins" }, { import = "jjaime.plugins.lsp" } }, {
 
-checker = {
-  enabled = true,
-  notify = true,
-},
+  checker = {
+    enabled = true,
+    notify = true,
+  },
 
-change_detection = {
-notify = false,
-},
+  change_detection = {
+    notify = false,
+  },
+
+  ui = {
+    size = { width = 0.8, height = 0.8 },
+    border = "single",
+  },
 })

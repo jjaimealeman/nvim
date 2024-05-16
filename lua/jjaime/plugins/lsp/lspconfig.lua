@@ -37,6 +37,7 @@ return {
   config = function()
     -- import lspconfig plugin
     local lspconfig = require("lspconfig")
+    require("lspconfig.ui.windows").default_options.border = "single"
 
     -- import mason_lspconfig plugin
     local mason_lspconfig = require("mason-lspconfig")

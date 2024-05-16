@@ -5,13 +5,13 @@ I started over with [Kickstart](https://github.com/nvim-lua/kickstart.nvim/) and
 ---
 
 `dashboard`
-![screenshot](./images/screenshot-20240512-131442.png)
+![screenshot-20240512-131442](https://github.com/jjaimealeman/nvim/assets/1428292/6e237bd0-5263-4c95-9658-a16cc7605075)
 
 `splits`
-![screenshot](./images/screenshot-20240512-140911.png)
+![screenshot-20240512-140911](https://github.com/jjaimealeman/nvim/assets/1428292/212f63b1-c35f-4fa7-8b2f-68b7e4949fb7)
 
 `lazy`
-![screenshot](./images/screenshot-20240512-154119.png)
+![screenshot-20240512-154119](https://github.com/jjaimealeman/nvim/assets/1428292/5ed85699-2dea-478c-9455-b68cc3a6d01e)
 
 `plugins`
 

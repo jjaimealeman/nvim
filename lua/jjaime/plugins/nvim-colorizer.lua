@@ -1,5 +1,6 @@
 return {
   "NvChad/nvim-colorizer.lua",
+  enabled = false,
   event = "VeryLazy", -- https://github.com/NvChad/nvim-colorizer.lua/issues/57
   -- event = { "BufReadPost", "BufNewFile" },
   opts = {

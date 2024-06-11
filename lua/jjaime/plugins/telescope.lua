@@ -14,11 +14,18 @@ return {
     telescope.setup({
       defaults = {
         layout_strategy = "vertical",
-        layout_config = { height = 0.95 },
+        layout_config = {
+          height = 0.95,
+          width = 0.7,
+        },
         -- OPTIONS:
         -- telescope.defaults.path_display
         -- "hidden", "tail", "absolute", "smart", "shorten", "truncate"
         path_display = { "truncate" },
+        -- prompt_prefix = "󰼛 ",
+        -- prompt_prefix = " 🔍 ",
+        prompt_prefix = "   ",
+        selection_caret = "󱞩 ",
         mappings = {
           i = {
             ["<C-k>"] = actions.move_selection_previous, -- move to prev result
@@ -45,5 +52,11 @@ return {
     -- NOTE:
     -- To find all `todo-comments`:
     keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
+
+    -- NOTE:
+    -- find keymaps
+    keymap.set("n", "<leader>fp", function()
+      require("telescope.builtin").keymaps({ cwd = require("lazy.core.config").options.root })
+    end, { desc = "Find  keymaps" })
   end,
 }

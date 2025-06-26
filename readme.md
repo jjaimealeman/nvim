@@ -66,6 +66,7 @@ I started over with [Kickstart](https://github.com/nvim-lua/kickstart.nvim/) and
 
 - [ ] https://github.com/ibhagwan/fzf-lua/ ⭐️⭐️⭐️
 - [ ] https://github.com/ahmedkhalf/project.nvim
+- [ ] https://github.com/yetone/avante.nvim
 
 ---
 

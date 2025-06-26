@@ -28,18 +28,20 @@ return {
       -- list of servers for mason to install
       ensure_installed = {
         "astro",
-        "tsserver",
+        "vtsls", -- TypeScript server (previously tsserver)
         "html",
         "cssls",
-        "tailwindcss",
+        "tailwindcss", 
         "svelte",
         "lua_ls",
         "graphql",
         "emmet_ls",
-        "prismals",
         "pyright",
       },
+      automatic_installation = true,
     })
+    
+    -- Remove the setup_handlers initialization as we're not using it anymore
 
     mason_tool_installer.setup({
       ensure_installed = {

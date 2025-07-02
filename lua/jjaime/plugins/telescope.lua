@@ -42,21 +42,21 @@ return {
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
 
-    keymap.set("n", "<leader><leader>", "<cmd>Telescope git_files<cr>", { desc = "[F]ind [F]iles inFuzzy cwd" })
-    keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "[F]ind a [B]uffer." })
-    keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "[F]ind string under [C]ursor in cwd" })
-    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "[F]ind [F]iles in cwd" })
-    keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>", { desc = "[F]ind files in `[G]it ls-files`." })
-    keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "[F]ind [R]ecent files" })
-    keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "[F]ind [S]tring in cwd" })
+    keymap.set("n", "<leader><leader>", "<cmd>Telescope git_files<cr>", { desc = "Find Files (Git)" })
+    keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find Buffer" })
+    keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find String under Cursor" })
+    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find Files" })
+    keymap.set("n", "<leader>fg", "<cmd>Telescope git_files<cr>", { desc = "Find Files (Git)" })
+    keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Find Recent Files" })
+    keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find String (Live Grep)" })
     -- NOTE:
     -- To find all `todo-comments`:
-    keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
+    keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find Todos" })
 
     -- NOTE:
     -- find keymaps
     keymap.set("n", "<leader>fp", function()
       require("telescope.builtin").keymaps({ cwd = require("lazy.core.config").options.root })
-    end, { desc = "Find  keymaps" })
+    end, { desc = "Find Keymaps" })
   end,
 }

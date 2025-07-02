@@ -7,28 +7,32 @@ return {
   end,
   opts = {
     plugins = { spelling = true },
-    defaults = {
-      mode = { "n", "v" },
-      { "<leader>b", desc = " Buffers" },
-      { "<leader>c", desc = " Code" },
-      { "<leader>e", desc = " Explorer" },
-      { "<leader>f", desc = " Find with Telescope" },
-      { "<leader>h", desc = " git" },
-      { "<leader>m", desc = " Format" },
-      { "<leader>r", desc = " Rename/Restart" },
-      { "<leader>t", desc = " Tabs" },
-      { "<leader>w", desc = " Sessions" },
-
-      { "<leader>x", desc = " Trouble diagnostics" },
-      { "<leader>y", desc = " Yank Yoink" },
-      { "<leader>s", desc = " Splits" },
-      { "<leader>T", desc = " ToggleTerm" },
-      { "<leader>z", desc = " Random ??" },
+    icons = {
+      breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
+      separator = "➜", -- symbol used between a key and its description
+      group = "+", -- symbol prepended to a group
     },
   },
   config = function(_, opts)
     local wk = require("which-key")
     wk.setup(opts)
-    -- wk.register(opts.defaults)
+
+    wk.add({
+      mode = { "n", "v" },
+      { "<leader>b", group = "Buffers" },
+      { "<leader>c", group = "Code" },
+      { "<leader>e", group = "Explorer" },
+      { "<leader>f", group = "Find" },
+      { "<leader>h", group = "Git" },
+      { "<leader>m", group = "Format" },
+      { "<leader>r", group = "Rename/Restart" },
+      { "<leader>s", group = "Splits" },
+      { "<leader>t", group = "Tabs" },
+      { "<leader>w", group = "Workspace" },
+      { "<leader>x", group = "Trouble" },
+      { "<leader>y", group = "Yank" },
+      { "<leader>z", group = "Misc" },
+      { "<leader>T", group = "ToggleTerm" },
+    })
   end,
 }

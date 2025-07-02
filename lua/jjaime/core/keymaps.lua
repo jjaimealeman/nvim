@@ -75,10 +75,7 @@ keymap.set("n", "J", "mzJ`z", { desc = "Merge with following line." }) -- thanks
 keymap.set("n", "<leader>zd", "a<C-R>=strftime('%a %d %b %Y')<CR><ESC>", { desc = "Date stamp." })
 keymap.set("n", "<leader>zs", "a<C-R>=strftime('%a %d %b %Y @ %H:%M')<CR><ESC>", { desc = "Date & time stamp." })
 keymap.set("n", "<leader>zt", "a<C-R>=strftime('%H:%M')<CR><ESC>", { desc = "Time stamp." })
-keymap.set("n", "y", '"+y')
-keymap.set("v", "y", '"+y')
-keymap.set("n", "y", '"+Y')
-keymap.set("n", "yw", "bvey") -- SELECT AND COPY THIS WORD
+
 --
 -- SPLIT WINDOW MANAGEMENT
 keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size." })
@@ -87,18 +84,18 @@ keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically." })
 keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split." })
 
 -- BUFFERS
-keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Delete Buffer" })
+keymap.set("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Last Buffer" })
+keymap.set("n", "<leader>bd", "<cmd>bdelete<cr>", { desc = "Close Buffer" })
 keymap.set("n", "<leader>bn", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-keymap.set("n", "<leader>bv", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+keymap.set("n", "<leader>bv", "<cmd>bprevious<cr>", { desc = "Previous Buffer" })
 keymap.set("n", "<leader>bx", function()
   vim.cmd("bufdo bd!")
-end, { desc = "Close all open buffers" })
+end, { desc = "Close All Buffers" })
 
 -- TABS
-keymap.set("n", "<leader>td", "<cmd>tabclose<CR>", { desc = "Delete current tab." })
-keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab." })
-keymap.set("n", "<leader>tN", "<cmd>tabnew %<CR>", { desc = "New tab (duplicate current)." })
+keymap.set("n", "<leader>td", "<cmd>tabclose<CR>", { desc = "Close Tab" })
+keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New Tab" })
+keymap.set("n", "<leader>tN", "<cmd>tabnew %<CR>", { desc = "Duplicate Tab" })
 keymap.set("n", "<tab>", "<cmd>tabnext<CR>", { desc = "Go to next tab." })
 keymap.set("n", "<s-tab>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab." })
 

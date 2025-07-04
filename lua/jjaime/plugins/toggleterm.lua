@@ -37,11 +37,11 @@ return {
         desc = "ToggleTerm (tab root_dir)",
       },
       {
-        "<leader>TT",
+        "<leader>Tc",
         function()
-          require("toggleterm").toggle(1, 100, vim.loop.cwd(), "tab")
+          require("toggleterm").toggle(1, 100, vim.fn.expand('%:p:h'), "tab")
         end,
-        desc = "ToggleTerm (tab cwd_dir)",
+        desc = "ToggleTerm (tab current file dir)",
       },
       -- {
       --   "<leader>Tn",

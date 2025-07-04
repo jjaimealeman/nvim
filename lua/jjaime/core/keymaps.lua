@@ -96,8 +96,8 @@ end, { desc = "Close All Buffers" })
 keymap.set("n", "<leader>td", "<cmd>tabclose<CR>", { desc = "Close Tab" })
 keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New Tab" })
 keymap.set("n", "<leader>tN", "<cmd>tabnew %<CR>", { desc = "Duplicate Tab" })
-keymap.set("n", "<tab>", "<cmd>tabnext<CR>", { desc = "Go to next tab." })
-keymap.set("n", "<s-tab>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab." })
+keymap.set("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Go to next buffer." })
+keymap.set("n", "<s-tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Go to previous buffer." })
 
 keymap.set("n", "<C-Z>", "u") -- undo
 keymap.set("i", "<C-Z>", "<C-O>u")

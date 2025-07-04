@@ -30,7 +30,7 @@ return {
         desc = "ToggleTerm (vertical root_dir)",
       },
       {
-        "<leader>Tt",
+        "<leader>Tr",
         function()
           require("toggleterm").toggle(1, 100, vim.loop.cwd(), "tab")
         end,

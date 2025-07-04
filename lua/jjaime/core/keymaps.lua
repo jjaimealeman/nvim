@@ -35,7 +35,7 @@ keymap.set("n", "<C-Left>", "<cmd>vertical resize -10<cr>", { desc = "Decrease W
 -- keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save" }) -- SAVE WITH CTRL S
 -- keymap.set("i", "<C-s>", "<ESC>:w<CR>", { desc = "Save" })
 keymap.set({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
-
+-- testing
 keymap.set("n", "<C-Z>", "u", { desc = "Undo." })
 keymap.set("n", "<C-Y>", "<C-R>", { desc = "Redo." })
 keymap.set("n", "<C-a>", "gg<S-v>G", { desc = "Select all." })
@@ -102,6 +102,22 @@ keymap.set("n", "<s-tab>", "<cmd>tabprevious<CR>", { desc = "Go to previous tab.
 keymap.set("n", "<C-Z>", "u") -- undo
 keymap.set("i", "<C-Z>", "<C-O>u")
 keymap.set("n", "<C-Y>", "<C-R>") -- redo
+
+-- In your init.lua or a keymap file
+vim.keymap.set("n", "<leader>fC", function()
+  -- Clear previous search highlights (optional, but good for refresh)
+  vim.cmd("nohlsearch")
+  -- Get the word under the cursor, escape special characters, and make it a whole word search
+  local word = vim.fn.expand("<cword>")
+  if word ~= "" then
+    -- This sets the search register to the word, surrounded by '\<' and '\>' for whole word matching
+    -- '\V' makes it very non-magic, so characters like '.', '*', etc. are matched literally
+    -- vim.fn.setreg("/", '\\V\\<' .. vim.fn.escape(word, [[\/.*$^~[]]]) .. '\\>')
+    vim.fn.setreg("/", "\\V\\<" .. vim.fn.escape(word, "\\/.*$^~[]") .. "\\>")
+    vim.cmd("set hlsearch") -- Enable highlighting of search results
+  end
+end, { desc = "Find String under Cursor (highlight)" })
+
 -- NOTES:
 -- SUPER FIND & REPLACE by Primeagen https://youtu.be/w7i4amO_zaE?t=1724
 -- copy the buffer to the system clipboard for use elsewhere https://youtu.be/w7i4amO_zaE?t=1633

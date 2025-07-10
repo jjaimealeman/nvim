@@ -27,12 +27,13 @@ return {
       { "<leader>m", group = "Format" },
       { "<leader>r", group = "Rename/Restart" },
       { "<leader>s", group = "Splits" },
-      { "<leader>t", group = "Tabs" },
+      { "<leader>t", group = "ToggleTerm" },
+      { "<leader>T", group = "Tabs" },
       { "<leader>w", group = "Workspace" },
       { "<leader>x", group = "Trouble" },
       { "<leader>y", group = "Yank" },
       { "<leader>z", group = "Misc" },
-      { "<leader>T", group = "ToggleTerm" },
     })
   end,
 }
+

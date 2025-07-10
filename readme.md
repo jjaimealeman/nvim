@@ -15,50 +15,8 @@ I started over with [Kickstart](https://github.com/nvim-lua/kickstart.nvim/) and
 
 `plugins`
 
-```sh
-.
-├── alpha.lua
-├── autopairs.lua
-├── auto-session.lua
-├── bufferline.lua
-├── codeium.lua
-├── colorscheme.lua
-├── comment.lua
-├── dressing.lua
-├── example.lua
-├── flash.lua
-├── formatting.lua
-├── gitsigns.lua
-├── indent-blankline.lua
-├── indentscope.lua
-├── init.lua
-├── lazygit.lua
-├── linting.lua
-├── lsp
-│   ├── lspconfig.lua
-│   └── mason.lua
-├── lualine.lua
-├── markdown-preview.lua
-├── mini-animate.lua
-├── noice.lua
-├── nvim-cmp.lua
-├── nvim-colorizer.lua
-├── nvim-notify.lua
-├── nvim-tree.lua
-├── nvim-treesitter-text-objects.lua
-├── substitute.lua
-├── surround.lua
-├── tailwindcss.lua
-├── telescope.lua
-├── todo-comments.lua
-├── toggleterm.lua
-├── treesitter.lua
-├── trouble.lua
-├── vim-illuminate.lua
-├── vim-maximizer.lua
-├── wakatime.lua
-└── which-key.lua
-```
+Plugin specs are defined in the `lua/jjaime/plugins/` directory.  
+
 
 ---
 
@@ -67,6 +25,13 @@ I started over with [Kickstart](https://github.com/nvim-lua/kickstart.nvim/) and
 - [ ] https://github.com/ibhagwan/fzf-lua/ ⭐️⭐️⭐️
 - [ ] https://github.com/ahmedkhalf/project.nvim
 - [ ] https://github.com/yetone/avante.nvim
+
+##Fri 04 Jul 2025 @ 11:45
+
+## TODO
+
+- [ ] avante.nvim
+- [ ] mcphub.nvim
 
 ---
 

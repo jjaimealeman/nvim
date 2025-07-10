@@ -55,6 +55,9 @@ vim.opt.updatetime = 200 -- save swap file and trigger CursorHold
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.wrap = false -- Disable line wrap
 vim.opt.textwidth = 160
-vim.opt.undodir = vim.fn.expand("~/.config/nvim/undodir")
+-- persistent undo directory
+local undodir = vim.fn.expand("~/.config/nvim/undodir")
+vim.opt.undodir = undodir
+vim.fn.mkdir(undodir, "p")
 vim.opt.undofile = true
 vim.opt.undolevels = 10000

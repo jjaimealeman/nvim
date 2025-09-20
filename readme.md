@@ -15,8 +15,7 @@ I started over with [Kickstart](https://github.com/nvim-lua/kickstart.nvim/) and
 
 `plugins`
 
-Plugin specs are defined in the `lua/jjaime/plugins/` directory.  
-
+Plugin specs are defined in the `lua/jjaime/plugins/` directory.
 
 ---
 
@@ -34,5 +33,9 @@ Plugin specs are defined in the `lua/jjaime/plugins/` directory.
 - [ ] mcphub.nvim
 
 ---
+
+<!-- Fri 11 Jul 2025 @ 13:45 -->
+<!-- Fri 11 Jul 2025 @ 13:57 -->
+<!-- Fri 11 Jul 2025 @ 14:06 -->
 
 I know some of the keymaps don't really make sense to others, but they work for me. A neovim config SHOULD be a personal project 👍

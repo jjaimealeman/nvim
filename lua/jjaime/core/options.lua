@@ -51,6 +51,10 @@ vim.opt.tabstop = 2 -- Number of spaces tabs count for
 vim.opt.termguicolors = true -- True color support
 vim.opt.timeoutlen = 300
 vim.opt.updatetime = 200 -- save swap file and trigger CursorHold
+
+-- Enable focus events for tmux compatibility
+vim.api.nvim_command("set t_fd=") -- disable focus gained escape sequence
+vim.api.nvim_command("set t_fe=") -- disable focus lost escape sequence
 vim.opt.wildmode = "longest:full,full" -- Command-line completion mode
 vim.opt.wrap = true -- enable line wrapping
 vim.opt.linebreak = true -- wrap at word boundaries (no mid‑word splits)
@@ -63,3 +67,31 @@ vim.opt.undodir = undodir
 vim.fn.mkdir(undodir, "p")
 vim.opt.undofile = true
 vim.opt.undolevels = 10000
+
+-- Auto-reload files when changed externally
+vim.api.nvim_create_autocmd({ 
+  "BufEnter",     -- When switching to a buffer (like tab switching)
+  "CursorHold",   -- When cursor stops moving in normal mode (after updatetime=200ms)
+  "CursorHoldI",  -- When cursor stops moving in insert mode (after updatetime=200ms)
+  "FocusGained",  -- When Neovim window gains focus (Alt+Tab back to terminal)
+  "BufWinEnter",  -- When a buffer is displayed in a window (opening splits/tabs)
+  "WinEnter",     -- When entering a window (moving between splits)
+  "CmdwinLeave"   -- When leaving command-line window (after running commands)
+}, {
+  command = "if mode() != 'c' | checktime | endif",
+  pattern = { "*" },
+})
+
+-- Show notification when file is reloaded
+vim.api.nvim_create_autocmd("FileChangedShellPost", {
+  pattern = "*",
+  callback = function()
+    vim.notify("File changed on disk. Buffer reloaded!", vim.log.levels.INFO)
+  end,
+})
+
+-- More aggressive file checking with timer (for true live updates)
+local timer = vim.loop.new_timer() -- create a new timer
+timer:start(1000, 1000, vim.schedule_wrap(function() -- check every 1 second
+  vim.cmd("checktime") -- check all buffers for external changes
+end))

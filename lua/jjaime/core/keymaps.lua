@@ -69,12 +69,23 @@ keymap.set("n", "<ESC><ESC>", ":noh<CR>", { desc = "Clear search highlights." })
 
 keymap.set("n", "+", "<C-a>", { desc = "Increment number." }) -- INCREMENT NUMBERS
 keymap.set("n", "-", "<C-x>", { desc = "Decrement number." }) -- DECREMENT NUMBERS
-keymap.set("n", "n", "nzzzv") -- keep highlighted search term in the center of page
-keymap.set("n", "N", "Nzzzv")
+-- keymap.set("n", "n", "nzzzv") -- keep highlighted search term in the center of page
+-- keymap.set("n", "N", "Nzzzv")
 keymap.set("n", "J", "mzJ`z", { desc = "Merge with following line." }) -- thanks ThePrimeagan https://youtu.be/w7i4amO_zaE?si=u3SfsyFoiqTPSHFr&t=1554
 keymap.set("n", "<leader>zd", "a<C-R>=strftime('%a %d %b %Y')<CR><ESC>", { desc = "Date stamp." })
 keymap.set("n", "<leader>zs", "a<C-R>=strftime('%a %d %b %Y @ %H:%M')<CR><ESC>", { desc = "Date & time stamp." })
 keymap.set("n", "<leader>zt", "a<C-R>=strftime('%H:%M')<CR><ESC>", { desc = "Time stamp." })
+keymap.set("n", "<leader>rr", function()
+  -- Clear loaded modules cache to force reload
+  for name, _ in pairs(package.loaded) do
+    if name:match("^jjaime") then
+      package.loaded[name] = nil
+    end
+  end
+  -- Reload the config
+  vim.cmd("source ~/.config/nvim/init.lua")
+  vim.notify("Config reloaded!", vim.log.levels.INFO)
+end, { desc = "Reload Neovim config" })
 
 --
 -- SPLIT WINDOW MANAGEMENT
@@ -93,9 +104,9 @@ keymap.set("n", "<leader>bx", function()
 end, { desc = "Close All Buffers" })
 
 -- TABS
-keymap.set("n", "<leader>td", "<cmd>tabclose<CR>", { desc = "Close Tab" })
-keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New Tab" })
-keymap.set("n", "<leader>tN", "<cmd>tabnew %<CR>", { desc = "Duplicate Tab" })
+keymap.set("n", "<leader>Td", "<cmd>tabclose<CR>", { desc = "Close Tab" })
+keymap.set("n", "<leader>Tn", "<cmd>tabnew<CR>", { desc = "New Tab" })
+keymap.set("n", "<leader>TN", "<cmd>tabnew %<CR>", { desc = "Duplicate Tab" })
 keymap.set("n", "<tab>", "<cmd>BufferLineCycleNext<CR>", { desc = "Go to next buffer." })
 keymap.set("n", "<s-tab>", "<cmd>BufferLineCyclePrev<CR>", { desc = "Go to previous buffer." })
 

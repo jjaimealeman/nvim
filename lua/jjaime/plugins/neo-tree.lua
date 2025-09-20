@@ -14,7 +14,7 @@ return {
       enable_diagnostics = true,
       default_component_configs = {
         container = {
-          enable_character_fade = true
+          enable_character_fade = true,
         },
         indent = {
           indent_size = 2,
@@ -25,11 +25,14 @@ return {
           highlight = "NeoTreeIndentMarker",
         },
         icon = {
-          folder_closed = "",
-          folder_open = "",
-          folder_empty = "ﰊ",
+          -- folder_closed = "",
+          -- folder_open = "",
+          -- folder_empty = "ﰊ",
+          folder_closed = "",
+          folder_open = "",
+          folder_empty = "󰜌",
           default = "*",
-          highlight = "NeoTreeFileIcon"
+          highlight = "NeoTreeFileIcon",
         },
         modified = {
           symbol = "[+]",
@@ -42,16 +45,16 @@ return {
         },
         git_status = {
           symbols = {
-            added     = "",
-            modified  = "",
-            deleted   = "✖",
-            renamed   = "",
+            added = "",
+            modified = "",
+            deleted = "✖",
+            renamed = "",
             untracked = "",
-            ignored   = "",
-            unstaged  = "",
-            staged    = "",
-            conflict  = "",
-          }
+            ignored = "",
+            unstaged = "",
+            staged = "",
+            conflict = "",
+          },
         },
       },
       window = {
@@ -81,12 +84,12 @@ return {
           },
           never_show = {
             ".DS_Store",
-            "thumbs.db"
+            "thumbs.db",
           },
         },
         follow_current_file = {
-          enabled = false,
-          leave_dirs_open = false,
+          enabled = true,
+          leave_dirs_open = true,
         },
         group_empty_dirs = false,
         hijack_netrw_behavior = "open_default",
@@ -103,8 +106,8 @@ return {
             ["<c-x>"] = "clear_filter",
             ["[g"] = "prev_git_modified",
             ["]g"] = "next_git_modified",
-          }
-        }
+          },
+        },
       },
       buffers = {
         follow_current_file = {
@@ -118,23 +121,23 @@ return {
             ["bd"] = "buffer_delete",
             ["<bs>"] = "navigate_up",
             ["."] = "set_root",
-          }
+          },
         },
       },
       git_status = {
         window = {
           position = "float",
           mappings = {
-            ["A"]  = "git_add_all",
+            ["A"] = "git_add_all",
             ["gu"] = "git_unstage_file",
             ["ga"] = "git_add_file",
             ["gr"] = "git_revert_file",
             ["gc"] = "git_commit",
             ["gp"] = "git_push",
             ["gg"] = "git_commit_and_push",
-          }
-        }
-      }
+          },
+        },
+      },
     })
 
     -- set keymaps

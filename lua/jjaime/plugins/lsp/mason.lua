@@ -40,8 +40,6 @@ return {
       },
       automatic_installation = true,
     })
-    
-    -- Remove the setup_handlers initialization as we're not using it anymore
 
     mason_tool_installer.setup({
       ensure_installed = {

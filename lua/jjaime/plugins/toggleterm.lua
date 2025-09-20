@@ -5,7 +5,7 @@ return {
     cmd = { "ToggleTerm" },
     keys = {
       {
-        "<leader>Tf",
+        "<leader>tf",
         function()
           local count = vim.v.count1
           -- require("toggleterm").toggle(count, 0, vim.loop.cwd(), "vertical")
@@ -14,7 +14,7 @@ return {
         desc = "ToggleTerm (float root_dir)",
       },
       {
-        "<leader>Th",
+        "<leader>th",
         function()
           local count = vim.v.count1
           require("toggleterm").toggle(count, 15, vim.loop.cwd(), "horizontal")
@@ -22,7 +22,7 @@ return {
         desc = "ToggleTerm (horizontal root_dir)",
       },
       {
-        "<leader>Tv",
+        "<leader>tv",
         function()
           local count = vim.v.count1
           require("toggleterm").toggle(count, vim.o.columns * 0.4, vim.loop.cwd(), "vertical")
@@ -30,18 +30,18 @@ return {
         desc = "ToggleTerm (vertical root_dir)",
       },
       {
-        "<leader>Tr",
+        "<leader>tr",
         function()
-          require("toggleterm").toggle(1, 100, vim.loop.cwd(), "tab")
+          require("toggleterm").toggle(1, 20, vim.loop.cwd(), "horizontal")
         end,
-        desc = "ToggleTerm (tab root_dir)",
+        desc = "ToggleTerm (horizontal root_dir)",
       },
       {
-        "<leader>Tc",
+        "<leader>tc",
         function()
-          require("toggleterm").toggle(1, 100, vim.fn.expand('%:p:h'), "tab")
+          require("toggleterm").toggle(1, 20, vim.fn.expand("%:p:h"), "horizontal")
         end,
-        desc = "ToggleTerm (tab current file dir)",
+        desc = "ToggleTerm (horizontal current file dir)",
       },
       -- {
       --   "<leader>Tn",

@@ -35,13 +35,6 @@ return {
     },
   },
   config = function()
-    -- import lspconfig plugin
-    local lspconfig = require("lspconfig")
-    require("lspconfig.ui.windows").default_options.border = "single"
-
-    -- import mason_lspconfig plugin
-    local mason_lspconfig = require("mason-lspconfig")
-
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -109,19 +102,16 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    -- Use individual server setups instead of setup_handlers since it's now a table
-    
     -- default handler for installed servers
     local default_handler = function(server_name)
-      lspconfig[server_name].setup({
+      vim.lsp.config(server_name, {
         capabilities = capabilities,
       })
+      vim.lsp.enable(server_name)
     end
-    
-    -- Set up each server individually
-    
+
     -- Svelte
-    lspconfig["svelte"].setup({
+    vim.lsp.config("svelte", {
       capabilities = capabilities,
       on_attach = function(client, bufnr)
         vim.api.nvim_create_autocmd("BufWritePost", {
@@ -133,21 +123,24 @@ return {
         })
       end,
     })
-    
+    vim.lsp.enable("svelte")
+
     -- GraphQL
-    lspconfig["graphql"].setup({
+    vim.lsp.config("graphql", {
       capabilities = capabilities,
       filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
     })
-    
+    vim.lsp.enable("graphql")
+
     -- Emmet
-    lspconfig["emmet_ls"].setup({
+    vim.lsp.config("emmet_ls", {
       capabilities = capabilities,
       filetypes = { "astro", "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
     })
-    
+    vim.lsp.enable("emmet_ls")
+
     -- Lua
-    lspconfig["lua_ls"].setup({
+    vim.lsp.config("lua_ls", {
       capabilities = capabilities,
       settings = {
         Lua = {
@@ -162,17 +155,18 @@ return {
         },
       },
     })
-    
+    vim.lsp.enable("lua_ls")
+
     -- TypeScript (vtsls)
-    lspconfig["vtsls"].setup({
+    vim.lsp.config("vtsls", {
       capabilities = capabilities,
     })
-    
-    -- Setup other servers from ensure_installed list
-    for _, server in ipairs(mason_lspconfig.get_installed_servers()) do
-      if server ~= "svelte" and server ~= "graphql" and server ~= "emmet_ls" and server ~= "lua_ls" and server ~= "vtsls" then
-        default_handler(server)
-      end
+    vim.lsp.enable("vtsls")
+
+    -- Setup remaining servers with default config
+    local servers = { "astro", "html", "cssls", "tailwindcss", "pyright" }
+    for _, server in ipairs(servers) do
+      default_handler(server)
     end
   end,
 }

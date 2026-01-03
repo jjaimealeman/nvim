@@ -3,6 +3,8 @@ return {
   config = function()
     require("notify").setup({
       background_colour = "#181825",
+      top_down = false,
+      render = "compact",
     })
   end,
 }

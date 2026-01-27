@@ -1,27 +1,14 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  branch = "main",
   event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
   dependencies = {
     "windwp/nvim-ts-autotag",
   },
   config = function()
-    -- import nvim-treesitter plugin
-    local treesitter = require("nvim-treesitter.configs")
-
-    -- configure treesitter
-    treesitter.setup({ -- enable syntax highlighting
-      highlight = {
-        enable = true,
-      },
-      -- enable indentation
-      indent = { enable = true },
-      -- enable autotagging (w/ nvim-ts-autotag plugin)
-      autotag = {
-        enable = true,
-      },
-      -- ensure these language parsers are installed
-      ensure_installed = {
+    require("nvim-treesitter").setup({
+      ensure_install = {
         "json",
         "javascript",
         "typescript",
@@ -42,17 +29,23 @@ return {
         "query",
         "vimdoc",
         "c",
-        "regex", -- Add regex parser for noice.nvim
-      },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<C-space>",
-          node_incremental = "<C-space>",
-          scope_incremental = false,
-          node_decremental = "<bs>",
-        },
+        "regex",
+        "vue",
       },
     })
+
+    -- Enable features via vim.treesitter (new API)
+    vim.treesitter.language.register("markdown", "mdx")
+
+    -- Incremental selection
+    vim.keymap.set("n", "<C-space>", function()
+      require("nvim-treesitter.incremental_selection").init_selection()
+    end, { desc = "Init treesitter selection" })
+    vim.keymap.set("v", "<C-space>", function()
+      require("nvim-treesitter.incremental_selection").node_incremental()
+    end, { desc = "Increment treesitter selection" })
+    vim.keymap.set("v", "<bs>", function()
+      require("nvim-treesitter.incremental_selection").node_decremental()
+    end, { desc = "Decrement treesitter selection" })
   end,
 }

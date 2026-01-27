@@ -4,8 +4,8 @@ return {
     local auto_session = require("auto-session")
 
     auto_session.setup({
-      auto_restore_enabled = false,
-      auto_session_suppress_dirs = { "~/Downloads", "~/Documents", "~/Desktop/" },
+      auto_restore = false, -- renamed from auto_restore_enabled
+      suppressed_dirs = { "~/Downloads", "~/Documents", "~/Desktop/" }, -- renamed from auto_session_suppress_dirs
     })
 
 

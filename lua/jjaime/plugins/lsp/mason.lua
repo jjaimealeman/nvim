@@ -37,6 +37,8 @@ return {
         "graphql",
         "emmet_ls",
         "pyright",
+        "vue_ls", -- Vue Language Server for Vue 3/Nuxt 3
+        "jsonls", -- JSON Language Server for schema validation
       },
       automatic_installation = true,
     })

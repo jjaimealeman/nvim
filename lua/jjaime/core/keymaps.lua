@@ -134,3 +134,9 @@ end, { desc = "Find String under Cursor (highlight)" })
 -- copy the buffer to the system clipboard for use elsewhere https://youtu.be/w7i4amO_zaE?t=1633
 --
 --
+
+-- GLANCE - LSP reference/definition viewer (<leader>gl*)
+keymap.set("n", "<leader>gld", "<cmd>Glance definitions<CR>", { desc = "Glance definitions" })
+keymap.set("n", "<leader>glr", "<cmd>Glance references<CR>", { desc = "Glance references" })
+keymap.set("n", "<leader>gly", "<cmd>Glance type_definitions<CR>", { desc = "Glance type definitions" })
+keymap.set("n", "<leader>gli", "<cmd>Glance implementations<CR>", { desc = "Glance implementations" })

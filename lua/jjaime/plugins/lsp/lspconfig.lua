@@ -5,35 +5,9 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/neodev.nvim", opts = {} },
+    "b0o/schemastore.nvim", -- JSON schemas for better completion
   },
-  -- https://www.lazyvim.org/extras/lang/tailwind
-  opts = {
-    servers = {
-      tailwindcss = {
-        -- exclude a filetype from the default_config
-        filetypes_exclude = { "markdown" },
-        -- add additional filetypes to the default_config
-        filetypes_include = { "astro" },
-        -- to fully override the default_config, change the below
-        -- filetypes = {}
-      },
-    },
-    setup = {
-      tailwindcss = function(_, opts)
-        local tw = require("lspconfig.server_configurations.tailwindcss")
-        opts.filetypes = opts.filetypes or {}
-        -- Add default filetypes
-        vim.list_extend(opts.filetypes, tw.default_config.filetypes)
-        -- Remove excluded filetypes
-        --- @param ft string
-        opts.filetypes = vim.tbl_filter(function(ft)
-          return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
-        end, opts.filetypes)
-        -- Add additional filetypes
-        vim.list_extend(opts.filetypes, opts.filetypes_include or {})
-      end,
-    },
-  },
+
   config = function()
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
@@ -68,8 +42,8 @@ return {
 
         -- FIX:
         -- change the leader key to [cX] where [c] equals Code, so all code related functions are related.
-        opts.desc = "Smart rename"
-        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
+        opts.desc = "Smart rename (incremental)"
+        keymap.set("n", "<leader>rn", function() return ":IncRename " .. vim.fn.expand("<cword>") end, { desc = "Incremental rename", expr = true, buffer = ev.buf }) -- smart rename with preview
 
         opts.desc = "Show buffer diagnostics"
         keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
@@ -102,71 +76,129 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    -- default handler for installed servers
-    local default_handler = function(server_name)
-      vim.lsp.config(server_name, {
-        capabilities = capabilities,
-      })
-      vim.lsp.enable(server_name)
+
+
+    -- Configure TypeScript first (required for Volar)
+    vim.lsp.config("vtsls", {
+      cmd = { "vtsls", "--stdio" },
+      capabilities = capabilities,
+      root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+      filetypes = {
+        "javascript",
+        "javascriptreact",
+        "javascript.jsx",
+        "typescript",
+        "typescriptreact",
+        "typescript.tsx",
+      },
+    })
+
+    -- Discover TypeScript SDK path dynamically
+    local function find_typescript_sdk()
+      local candidates = {
+        -- pnpm global
+        vim.fn.expand("$HOME/.local/share/pnpm/global/5/node_modules/typescript/lib"),
+        -- npm global (nvm)
+        vim.fn.trim(vim.fn.system("npm root -g")) .. "/typescript/lib",
+        -- fallback: node_modules in project
+        vim.fn.getcwd() .. "/node_modules/typescript/lib",
+      }
+      for _, path in ipairs(candidates) do
+        if vim.fn.isdirectory(path) == 1 then
+          return path
+        end
+      end
+      return candidates[1] -- fallback to first candidate
     end
 
-    -- Svelte
-    vim.lsp.config("svelte", {
+    -- Configure Vue Language Server
+    vim.lsp.config("vue_ls", {
+      cmd = { "vue-language-server", "--stdio" },
       capabilities = capabilities,
-      on_attach = function(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePost", {
-          pattern = { "*.js", "*.ts" },
-          callback = function(ctx)
-            -- Here use ctx.match instead of ctx.file
-            client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-          end,
-        })
-      end,
-    })
-    vim.lsp.enable("svelte")
-
-    -- GraphQL
-    vim.lsp.config("graphql", {
-      capabilities = capabilities,
-      filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
-    })
-    vim.lsp.enable("graphql")
-
-    -- Emmet
-    vim.lsp.config("emmet_ls", {
-      capabilities = capabilities,
-      filetypes = { "astro", "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
-    })
-    vim.lsp.enable("emmet_ls")
-
-    -- Lua
-    vim.lsp.config("lua_ls", {
-      capabilities = capabilities,
-      settings = {
-        Lua = {
-          -- make the language server recognize "vim" global
-          diagnostics = {
-            globals = { "vim" },
-            disable = { "missing-fields" },
-          },
-          completion = {
-            callSnippet = "Replace",
-          },
+      root_markers = { "package.json", "vue.config.js", "nuxt.config.js", "nuxt.config.ts" },
+      filetypes = { "vue" },
+      init_options = {
+        typescript = {
+          tsdk = find_typescript_sdk(),
         },
       },
     })
-    vim.lsp.enable("lua_ls")
 
-    -- TypeScript (vtsls)
-    vim.lsp.config("vtsls", {
+    -- Configure JSON with SchemaStore
+    vim.lsp.config("jsonls", {
+      cmd = { "vscode-json-language-server", "--stdio" },
       capabilities = capabilities,
+      filetypes = { "json", "jsonc" },
+      settings = {
+        json = {
+          schemas = require("schemastore").json.schemas(),
+          validate = { enable = true },
+        },
+      },
     })
-    vim.lsp.enable("vtsls")
 
-    -- Setup remaining servers with default config
-    local servers = { "astro", "html", "cssls", "tailwindcss", "pyright" }
-    for _, server in ipairs(servers) do
-      default_handler(server)
+    -- Configure other language servers
+    local server_configs = {
+      astro = { cmd = { "astro-ls", "--stdio" }, filetypes = { "astro" } },
+      html = { cmd = { "vscode-html-language-server", "--stdio" }, filetypes = { "html" } },
+      cssls = { cmd = { "vscode-css-language-server", "--stdio" }, filetypes = { "css", "scss", "less" } },
+      tailwindcss = { 
+        cmd = { "tailwindcss-language-server", "--stdio" },
+        filetypes = { "html", "css", "scss", "javascript", "javascriptreact", "typescript", "typescriptreact", "vue", "svelte" }
+      },
+      pyright = { cmd = { "pyright-langserver", "--stdio" }, filetypes = { "python" } },
+      svelte = {
+        cmd = { "svelteserver", "--stdio" },
+        filetypes = { "svelte" },
+        on_attach = function(client, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePost", {
+            pattern = { "*.js", "*.ts" },
+            callback = function(ctx)
+              client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
+            end,
+          })
+        end,
+      },
+      graphql = {
+        cmd = { "graphql-lsp", "server", "-m", "stream" },
+        filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" }
+      },
+      emmet_ls = {
+        cmd = { "emmet-ls", "--stdio" },
+        filetypes = { "astro", "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte", "vue" }
+      },
+      lua_ls = {
+        cmd = { "lua-language-server" },
+        filetypes = { "lua" },
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { "vim" },
+              disable = { "missing-fields" },
+            },
+            completion = {
+              callSnippet = "Replace",
+            },
+          },
+        },
+      },
+    }
+
+    -- Register and enable all servers
+    for name, config in pairs(server_configs) do
+      config.capabilities = capabilities
+      config.root_markers = config.root_markers or { ".git", "package.json" }
+      vim.lsp.config(name, config)
     end
+
+    -- Enable all configured servers
+    vim.lsp.enable("vtsls")
+    vim.lsp.enable("vue_ls")
+    vim.lsp.enable("jsonls")
+    for name, _ in pairs(server_configs) do
+      vim.lsp.enable(name)
+    end
+
+
   end,
 }

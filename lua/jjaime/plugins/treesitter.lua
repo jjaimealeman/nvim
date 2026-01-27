@@ -42,6 +42,7 @@ return {
         "query",
         "vimdoc",
         "c",
+        "regex", -- Add regex parser for noice.nvim
       },
       incremental_selection = {
         enable = true,

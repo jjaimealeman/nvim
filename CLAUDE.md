@@ -8,6 +8,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a personal Neovim configuration built from scratch using Lazy.nvim as the plugin manager. The configuration follows a modular structure under `lua/jjaime/` with separate modules for core settings, plugin management, and individual plugin configurations.
 
+Primarily configured for **Vue/Nuxt** and web development. Synced across two machines via git.
+
 ## Architecture
 
 ### Core Structure
@@ -24,7 +26,8 @@ This is a personal Neovim configuration built from scratch using Lazy.nvim as th
 - Implements extensive custom keybindings following logical patterns
 - Integrates modern LSP, formatting, and linting tools
 - Provides comprehensive Git integration
-- Supports TypeScript/JavaScript, Python, Lua, and web development
+- Vue/Nuxt-first with TypeScript, JavaScript, Python, and Lua support
+- Dynamic TypeScript SDK discovery for cross-machine portability
 
 ## Common Commands
 
@@ -57,9 +60,16 @@ This is a personal Neovim configuration built from scratch using Lazy.nvim as th
 - **Go to implementations**: `gi`
 - **Go to type definitions**: `gt`
 - **Code actions**: `<leader>ca`
-- **Rename**: `<leader>rn`
+- **Rename (incremental preview)**: `<leader>rn`
 - **Show documentation**: `K`
 - **Restart LSP**: `<leader>rs`
+
+### Glance (LSP Reference Viewer)
+
+- **Glance definitions**: `<leader>gld`
+- **Glance references**: `<leader>glr`
+- **Glance type definitions**: `<leader>gly`
+- **Glance implementations**: `<leader>gli`
 
 ### Formatting and Linting
 
@@ -76,7 +86,7 @@ This is a personal Neovim configuration built from scratch using Lazy.nvim as th
 - **Blame line**: `<leader>hb`
 - **Git diff**: `<leader>hd`
 
-### Diagnostics and Debugging
+### Diagnostics
 
 - **Toggle trouble**: `<leader>xx`
 - **Workspace diagnostics**: `<leader>xw`
@@ -88,19 +98,21 @@ This is a personal Neovim configuration built from scratch using Lazy.nvim as th
 
 ### Installed LSP Servers
 
-- **Web**: `astro`, `vtsls` (TypeScript), `html`, `cssls`, `tailwindcss`, `svelte`, `emmet_ls`
-- **General**: `lua_ls`, `graphql`, `pyright`
+- **Vue/Nuxt**: `vue_ls` (Vue Language Server with dynamic TypeScript SDK)
+- **TypeScript/JS**: `vtsls`
+- **Web**: `astro`, `html`, `cssls`, `tailwindcss`, `svelte`, `emmet_ls`
+- **Data**: `jsonls` (with SchemaStore validation), `graphql`
+- **General**: `lua_ls`, `pyright`
 
 ### Formatters
 
-- **JavaScript/TypeScript/React**: `prettier`
+- **JS/TS/Vue/HTML/CSS/JSON/YAML/Markdown**: `prettier`
 - **Lua**: `stylua`
 - **Python**: `isort` + `black`
-- **Web formats**: `prettier` (HTML, CSS, JSON, YAML, Markdown)
 
 ### Linters
 
-- **JavaScript/TypeScript/React/Svelte**: `eslint_d`
+- **JS/TS/Vue/Svelte**: `eslint_d`
 - **Python**: `pylint`
 
 ## Plugin Ecosystem
@@ -108,10 +120,16 @@ This is a personal Neovim configuration built from scratch using Lazy.nvim as th
 ### Core Development Tools
 
 - **LSP**: Mason + nvim-lspconfig for language server management
-- **Completion**: nvim-cmp with multiple sources including Codeium AI
+- **Completion**: nvim-cmp with multiple sources
 - **Formatting**: conform.nvim with auto-format on save
 - **Linting**: nvim-lint with auto-lint on buffer events
-- **Syntax**: nvim-treesitter for enhanced syntax highlighting
+- **Syntax**: nvim-treesitter (main branch, new API)
+
+### Vue/Nuxt Enhancements
+
+- **vue-goto-definition.nvim**: Improved goto-definition for Vue/Nuxt files
+- **Glance**: LSP reference/definition viewer with side-by-side UI
+- **inc-rename.nvim**: Incremental rename with live preview
 
 ### Navigation and Search
 
@@ -130,16 +148,18 @@ This is a personal Neovim configuration built from scratch using Lazy.nvim as th
 - **ToggleTerm**: Multiple terminal configurations
 - **Which-Key**: Keybinding discovery
 - **Comment**: Smart commenting with JSX/TSX context awareness
+- **Obsidian**: Markdown writing with vault integration
 - **WakaTime**: Time tracking for development sessions
 
 ## Development Workflow
 
 1. **Project Navigation**: Start with `<leader>ff` to find files or `<leader>ee` to open file explorer
 2. **Code Editing**: Use LSP features (`gd`, `gR`, `gi`) for code navigation
-3. **Terminal Access**: `<leader>Tf` for quick terminal access
-4. **Git Operations**: `<leader>lg` for LazyGit interface or `<leader>h*` for inline git operations
-5. **Code Quality**: Auto-formatting on save, manual formatting with `<leader>mp`
-6. **Diagnostics**: `<leader>xx` for trouble view, `<leader>d` for line diagnostics
+3. **Vue Navigation**: Use Glance (`<leader>gl*`) for reference/definition viewing
+4. **Terminal Access**: `<leader>Tf` for quick terminal access
+5. **Git Operations**: `<leader>lg` for LazyGit interface or `<leader>h*` for inline git operations
+6. **Code Quality**: Auto-formatting on save, manual formatting with `<leader>mp`
+7. **Diagnostics**: `<leader>xx` for trouble view, `<leader>d` for line diagnostics
 
 ## Custom Keybindings
 
@@ -166,6 +186,7 @@ This is a personal Neovim configuration built from scratch using Lazy.nvim as th
 - **Date stamps**: `<leader>zd` (date), `<leader>zs` (date & time), `<leader>zt` (time)
 - **Yank operations**: `<leader>yp` (file path), `<leader>yy` (to system clipboard)
 - **Save**: `<C-s>` (works in all modes)
+- **Reload config**: `<leader>rr`
 
 ## Configuration Files
 
@@ -174,11 +195,18 @@ The configuration is highly modular with each plugin having its own configuratio
 - `lua/jjaime/core/options.lua` - Core Neovim options
 - `lua/jjaime/core/keymaps.lua` - Global keybindings
 - `lua/jjaime/plugins/lsp/mason.lua` - LSP server management
-- `lua/jjaime/plugins/lsp/lspconfig.lua` - LSP configuration and keybindings
+- `lua/jjaime/plugins/lsp/lspconfig.lua` - LSP configuration (Vue/TS/JSON servers + keybindings)
 - `lua/jjaime/plugins/telescope.lua` - Fuzzy finder setup
 - `lua/jjaime/plugins/neo-tree.lua` - File explorer configuration
+- `lua/jjaime/plugins/vue-enhancements.lua` - Vue/Nuxt goto definition
+- `lua/jjaime/plugins/glance.lua` - LSP reference viewer
+- `lua/jjaime/plugins/inc-rename.lua` - Incremental rename
 
 ## Persistence
 
-The configuration uses a custom undo directory at `~/.config/nvim/undodir` for persistent undo across sessions. This allows for extensive undo history even after closing and reopening files.
+The configuration uses a custom undo directory at `~/.config/nvim/undodir` for persistent undo across sessions. Session options include folds, window positions, terminal state, and local options.
 
+## Machines
+
+- **ThinkPad T480** — Arch Linux + Hyprland (primary)
+- **Blackview MP60** — Arch Linux + Niri
